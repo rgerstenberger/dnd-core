@@ -136,18 +136,20 @@ export default class DragDropActions extends Actions {
     targetIds.forEach((targetId, index) => {
       const target = registry.getTarget(targetId);
 
-      let dropResult = target.drop(monitor, targetId);
-      invariant(
-        typeof dropResult === 'undefined' || isObject(dropResult),
-        'Drop result must either be an object or undefined.'
-      );
-      if (typeof dropResult === 'undefined') {
-        dropResult = index === 0 ?
-          {} :
-          monitor.getDropResult();
-      }
+      if (target) {
+        let dropResult = target.drop(monitor, targetId);
+        invariant(
+          typeof dropResult === 'undefined' || isObject(dropResult),
+          'Drop result must either be an object or undefined.'
+        );
+        if (typeof dropResult === 'undefined') {
+          dropResult = index === 0 ?
+            {} :
+            monitor.getDropResult();
+        }
 
-      this.dispatch(dropActionId, { dropResult });
+        this.dispatch(dropActionId, { dropResult });
+      }
     });
   }
 

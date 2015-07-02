@@ -73,7 +73,11 @@ export default class HandlerRegistry {
     validateSourceContract(source);
 
     const sourceId = this.addHandler(HandlerRoles.SOURCE, type, source);
-    this.actions.addSource(sourceId);
+    var self = this;
+
+    setTimeout(function () {
+      self.actions.addSource(sourceId);
+    }, 0);
     return sourceId;
   }
 
@@ -82,7 +86,11 @@ export default class HandlerRegistry {
     validateTargetContract(target);
 
     const targetId = this.addHandler(HandlerRoles.TARGET, type, target);
-    this.actions.addTarget(targetId);
+    var self = this;
+
+    setTimeout(function () {
+      self.actions.addTarget(targetId);
+    }, 0);
     return targetId;
   }
 
@@ -138,7 +146,11 @@ export default class HandlerRegistry {
     delete this.handlers[sourceId];
     delete this.types[sourceId];
 
-    this.actions.removeSource(sourceId);
+    var self = this;
+
+    setTimeout(function () {
+      self.actions.removeSource(sourceId);
+    }, 0);
   }
 
   removeTarget(targetId) {
@@ -147,7 +159,11 @@ export default class HandlerRegistry {
     delete this.handlers[targetId];
     delete this.types[targetId];
 
-    this.actions.removeTarget(targetId);
+    var self = this;
+
+    setTimeout(function () {
+      self.actions.removeTarget(targetId);
+    }, 0);
   }
 
   pinSource(sourceId) {
